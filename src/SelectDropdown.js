@@ -40,6 +40,7 @@ const SelectDropdown = (
     renderSearchInputLeftIcon /* function returns React component for search input icon */,
     renderSearchInputRightIcon /* function returns React component for search input icon */,
     onChangeSearchInputText /* function callback when the search input text changes, this will automatically disable the dropdown's interna search to be implemented manually outside the component  */,
+    position /* "center"|"flex" place modal center or bottom of element */
   },
   ref,
 ) => {
@@ -79,7 +80,7 @@ const SelectDropdown = (
   /* ******************* Methods ******************* */
   const openDropdown = () => {
     dropdownButtonRef.current.measure((fx, fy, w, h, px, py) => {
-      onDropdownButtonLayout(w, h, px, py);
+      onDropdownButtonLayout(w, h, px, py, position);
       setIsVisible(true);
       onFocus && onFocus();
       scrollToSelectedItem();

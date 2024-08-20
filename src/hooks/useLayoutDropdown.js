@@ -20,12 +20,12 @@ export const useLayoutDropdown = (data, dropdownStyle) => {
     setDropdownHEIGHT(getDropdownHeight(dropdownStyle, data?.length || 0));
   }, [JSON.stringify(dropdownStyle), JSON.stringify(data)]);
 
-  const onDropdownButtonLayout = (w, h, px, py) => {
+  const onDropdownButtonLayout = (w, h, px, py, position) => {
     setButtonLayout({w, h, px, py});
 
     const remainingHeight = dropdownStyle?.height || height / 4;
 
-    if (py + h > height - remainingHeight) {
+    if (position === 'center' || py + h > height - remainingHeight) {
       return setDropdownCalculatedStyle({
         bottom: height - (py + h) + h,
         width: dropdownStyle?.width || w,
