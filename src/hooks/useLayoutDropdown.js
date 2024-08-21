@@ -25,7 +25,15 @@ export const useLayoutDropdown = (data, dropdownStyle) => {
 
     const remainingHeight = dropdownStyle?.height || height / 4;
 
-    if (position === 'center' || py + h > height - remainingHeight) {
+    if (position === 'center') {
+      return setDropdownCalculatedStyle({
+        bottom: 200,
+        width: dropdownStyle?.width || w,
+        ...(I18nManager.isRTL ? {right: dropdownStyle?.right || px} : {left: dropdownStyle?.left || px}),
+      });
+    }
+
+    if (py + h > height - remainingHeight) {
       return setDropdownCalculatedStyle({
         bottom: height - (py + h) + h,
         width: dropdownStyle?.width || w,
